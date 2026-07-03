@@ -5,8 +5,9 @@ import { gsap, useGSAP } from "@/lib/gsap";
 import { ELITE } from "@/constants";
 
 // Start scale: large enough that the viewport sits fully inside one cut-out
-// letter (only the video shows). We then zoom OUT to the full-screen wordmark.
-const START_SCALE = 28;
+// letter (only the video shows). We then zoom OUT to the full-screen wordmark,
+// which reads like the black mask dropping in from above.
+const START_SCALE = 26;
 
 export default function EliteMask() {
   const root = useRef(null);
@@ -17,35 +18,25 @@ export default function EliteMask() {
         scrollTrigger: {
           trigger: root.current,
           start: "top top",
-          end: "+=240%",
+          end: "+=220%",
           scrub: true,
           pin: true,
           anticipatePin: 1,
         },
       });
 
-      // Zoom out: huge (inside a letter) -> 1 (normal full-screen ELITE mask).
       tl.fromTo(
         ".elite-mask",
         { scale: START_SCALE },
-        { scale: 1, ease: "expo.out", duration: 1 },
+        { scale: 1, ease: "power2.out", duration: 1 },
         0
       )
-        // Line over the video fades as we start pulling back.
-        .to(".elite-over", { opacity: 0, duration: 0.12 }, 0)
-        // Subtle settle on the footage.
-        .fromTo(
-          ".elite-media",
-          { scale: 1.12 },
-          { scale: 1, ease: "none", duration: 1 },
-          0
-        )
-        // Payoff line appears once the wordmark has formed.
+        .to(".elite-over", { opacity: 0, ease: "power1.out", duration: 0.18 }, 0)
         .fromTo(
           ".elite-under",
           { opacity: 0, y: 24 },
-          { opacity: 1, y: 0, duration: 0.16 },
-          0.82
+          { opacity: 1, y: 0, duration: 0.18 },
+          0.8
         );
     },
     { scope: root }
@@ -57,7 +48,7 @@ export default function EliteMask() {
       className="relative h-[100svh] w-full overflow-hidden bg-black"
     >
       {/* Media revealed through the ELITE cut-out */}
-      <div className="elite-media absolute inset-0 will-change-transform">
+      <div className="absolute inset-0">
         <video
           className="h-full w-full object-cover"
           autoPlay
@@ -69,7 +60,7 @@ export default function EliteMask() {
         >
           <source src="/videos/spinnig_racket_on_ground.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/35" />
+        <div className="absolute inset-0 bg-black/15" />
       </div>
 
       {/* Line shown while we're still zoomed inside the letter */}
@@ -82,27 +73,18 @@ export default function EliteMask() {
         </p>
       </div>
 
-      {/* The black ELITE mask — zooms OUT from the z-axis down to full screen.
-          A solid black div masked by the ELITE artwork: the black frame is
-          opaque (mask alpha = 1) so black shows; the letters are transparent
-          (alpha = 0) so they punch holes revealing the video behind.
-          mask-size: 100% 100% sizes the mask explicitly, avoiding the
-          unreliable intrinsic-size behaviour of SVGs with `cover`. */}
-      <div
-        className="elite-mask absolute inset-0 z-10 origin-center bg-black will-change-transform"
-        style={{
-          WebkitMaskImage: "url(/images/elite-mask.svg)",
-          maskImage: "url(/images/elite-mask.svg)",
-          WebkitMaskSize: "100% 100%",
-          maskSize: "100% 100%",
-          WebkitMaskRepeat: "no-repeat",
-          maskRepeat: "no-repeat",
-        }}
-        aria-hidden
-      />
+      {/* The black ELITE mask (black frame + transparent letters). Zooming this
+          <img> out from a huge scale to 1 is the reference technique. */}
+      <div className="elite-mask absolute inset-0 z-10 origin-center will-change-transform">
+        <img
+          src="/images/elite-mask.svg"
+          alt=""
+          className="h-full w-full object-cover"
+        />
+      </div>
 
       {/* Payoff line, revealed once the whole wordmark is on screen */}
-      <div className="elite-under absolute inset-x-0 bottom-[14%] z-30 flex flex-col items-center gap-3 px-6 text-center opacity-0">
+      <div className="elite-under absolute inset-x-0 bottom-[12%] z-30 flex flex-col items-center gap-3 px-6 text-center opacity-0">
         <p className="text-lg font-semibold tracking-tight text-white lg:text-xl">
           {ELITE.under}
         </p>
