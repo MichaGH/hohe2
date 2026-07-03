@@ -109,7 +109,7 @@ export default function Hero() {
 
         {/* Scroll cue */}
         <div className="hero-cue flex flex-col items-center gap-3 text-[11px] uppercase tracking-[0.3em] text-white/60">
-          <span>Scroll</span>
+          <span>Scrollen</span>
           <span className="relative flex h-10 w-px overflow-hidden bg-white/20">
             <span className="scroll-bead absolute inset-x-0 top-0 h-3 bg-volt" />
           </span>

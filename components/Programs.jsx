@@ -29,14 +29,14 @@ export default function Programs() {
         <div className="mb-14 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div className="flex flex-col gap-4">
             <span className="text-[11px] uppercase tracking-[0.3em] text-volt">
-              What we offer
+              Unser Angebot
             </span>
             <h2 className="display max-w-xl text-[clamp(2.2rem,5vw,4.5rem)] text-ink">
-              Four ways to play.
+              Vier Wege ins Spiel.
             </h2>
           </div>
           <p className="max-w-xs text-sm text-muted">
-            From first serve to national stage — a path for every ambition.
+            Vom ersten Aufschlag bis zur nationalen Bühne — ein Weg für jeden Ehrgeiz.
           </p>
         </div>
 

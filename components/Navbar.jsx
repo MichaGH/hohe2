@@ -109,13 +109,13 @@ export default function Navbar() {
           href="/club/become-a-member"
           className="group relative hidden overflow-hidden rounded-full bg-ink px-5 py-2.5 text-[13px] font-semibold text-bg transition-colors duration-300 hover:text-bg lg:inline-flex"
         >
-          <span className="relative z-10">Join the club</span>
+          <span className="relative z-10">Mitglied werden</span>
           <span className="absolute inset-0 z-0 origin-left scale-x-0 bg-volt transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:scale-x-100" />
         </Link>
 
         {/* Compact label for < lg (desktop-first, minimal) */}
         <span className="text-xs uppercase tracking-[0.2em] text-muted lg:hidden">
-          Menu
+          Menü
         </span>
       </nav>
     </header>

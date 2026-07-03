@@ -16,14 +16,14 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata = {
-  title: "Hohe Warte — Tennis Academy, Vienna",
+  title: "Hohe Warte — Tennisakademie, Wien",
   description:
-    "A century of tennis on Vienna's Hohe Warte hill. Elite coaching, indoor & outdoor courts, fitness and summer camps — where discipline becomes art.",
+    "Ein Jahrhundert Tennis auf der Wiener Hohen Warte. Elite-Training, Hallen- und Freiplätze, Fitness und Sommercamps — wo Disziplin zur Kunst wird.",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${geist.variable} ${instrument.variable}`}>
+    <html lang="de" className={`${geist.variable} ${instrument.variable}`}>
       <body>
         <SmoothScroll>
           <Navbar />

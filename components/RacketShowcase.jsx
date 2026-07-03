@@ -58,7 +58,7 @@ export default function RacketShowcase() {
             {RACKET_SECTION.kicker}
           </span>
           <span className="text-[11px] uppercase tracking-[0.3em] text-faint">
-            Fig. 02
+            Abb. 02
           </span>
         </div>
 

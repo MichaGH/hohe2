@@ -69,7 +69,7 @@ export default function Footer() {
               <span className="h-1.5 w-1.5 rounded-full bg-volt" />
             </div>
             <p className="max-w-xs text-sm text-muted">
-              {SITE.name} Tennis — {SITE.location}. Where discipline becomes art.
+              {SITE.name} Tennis — {SITE.location}. Wo Disziplin zur Kunst wird.
             </p>
             <a
               href={`mailto:${SITE.email}`}
@@ -102,8 +102,8 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col items-start justify-between gap-3 border-t border-line pt-8 text-xs text-faint md:flex-row md:items-center">
-          <span>© {new Date().getFullYear()} Hohe Warte Tennis. All rights reserved.</span>
-          <span className="uppercase tracking-[0.2em]">Vienna — 48.25° N</span>
+          <span>© {new Date().getFullYear()} Hohe Warte Tennis. Alle Rechte vorbehalten.</span>
+          <span className="uppercase tracking-[0.2em]">Wien — 48.25° N</span>
         </div>
       </div>
     </footer>

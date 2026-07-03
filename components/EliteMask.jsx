@@ -92,7 +92,7 @@ export default function EliteMask() {
           {ELITE.overline}
         </span>
         <p className="max-w-md px-6 font-serif text-2xl italic text-white/80">
-          What separates the good from the unforgettable.
+          Was das Gute vom Unvergesslichen trennt.
         </p>
       </div>
 

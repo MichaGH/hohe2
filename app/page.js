@@ -5,6 +5,7 @@ import HorizontalGallery from "@/components/HorizontalGallery";
 import EliteMask from "@/components/EliteMask";
 import Stats from "@/components/Stats";
 import Programs from "@/components/Programs";
+import Relax from "@/components/Relax";
 import Facility from "@/components/Facility";
 import Footer from "@/components/Footer";
 
@@ -18,6 +19,7 @@ export default function Home() {
       <EliteMask />
       <Stats />
       <Programs />
+      <Relax />
       <Facility />
       <Footer />
     </main>

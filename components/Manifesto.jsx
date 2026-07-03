@@ -40,7 +40,7 @@ export default function Manifesto() {
       className="relative flex h-[100svh] w-full items-center justify-center overflow-hidden bg-bg px-6 lg:px-10"
     >
       <span className="absolute left-6 top-1/2 -translate-y-1/2 text-[11px] uppercase tracking-[0.3em] text-faint lg:left-10">
-        Manifesto
+        Manifest
       </span>
 
       <p className="mx-auto max-w-5xl text-center text-[clamp(1.9rem,5vw,4.5rem)] font-medium leading-[1.12] tracking-tight">

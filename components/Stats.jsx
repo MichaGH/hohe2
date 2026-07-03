@@ -19,7 +19,7 @@ export default function Stats() {
           ease: "power3.out",
           scrollTrigger: { trigger: el, start: "top 88%", once: true },
           onUpdate: () => {
-            el.textContent = Math.round(obj.v).toLocaleString("en-US");
+            el.textContent = Math.round(obj.v).toLocaleString("de-DE");
           },
         });
       });
@@ -45,10 +45,10 @@ export default function Stats() {
       <div className="mx-auto max-w-[1600px]">
         <div className="mb-16 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <h2 className="display max-w-xl text-[clamp(2rem,4.5vw,3.75rem)] text-ink">
-            A century in the making.
+            Über ein Jahrhundert gewachsen.
           </h2>
           <p className="max-w-sm text-sm text-muted">
-            Numbers only tell part of the story — but they tell a good one.
+            Zahlen erzählen nur einen Teil der Geschichte — aber einen guten.
           </p>
         </div>
 
