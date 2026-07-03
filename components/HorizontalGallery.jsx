@@ -36,15 +36,15 @@ export default function HorizontalGallery() {
         {/* Intro panel */}
         <div className="flex h-[74vh] w-[80vw] shrink-0 flex-col justify-between py-10 md:w-[42vw]">
           <span className="text-[11px] uppercase tracking-[0.3em] text-volt">
-            Gallery — Grounds
+            The courts
           </span>
           <h2 className="display text-[clamp(2.4rem,6vw,5rem)] text-ink">
-            The court,
+            Fourteen courts.
             <br />
-            in <span className="font-serif italic text-muted">four</span> frames.
+            One <span className="font-serif italic text-muted">standard</span>.
           </h2>
           <p className="max-w-xs text-sm text-muted">
-            Scroll sideways. A quiet study of the surface where everything happens.
+            Outdoor clay and covered halls — a court for every season.
           </p>
         </div>
 

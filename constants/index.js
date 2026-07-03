@@ -52,10 +52,10 @@ export const RACKET_SECTION = {
 };
 
 export const GALLERY = [
-  { src: "/images/court-top.avif", index: "01", title: "From above", caption: "Geometry of the game" },
-  { src: "/images/court-side-artistic.png", index: "02", title: "The baseline", caption: "Where rallies are born" },
-  { src: "/images/court-top-with-man.avif", index: "03", title: "Solitude", caption: "Just you and the line" },
-  { src: "/images/court-in-hall.avif", index: "04", title: "Indoors", caption: "Play through every season" },
+  { src: "/images/court-top.avif", index: "01", title: "Championship clay", caption: "Groomed by hand, line by line" },
+  { src: "/images/court-side-artistic.png", index: "02", title: "Built for the light", caption: "Golden-hour rallies on red clay" },
+  { src: "/images/court-top-with-man.avif", index: "03", title: "Room to breathe", caption: "Space to find your rhythm" },
+  { src: "/images/court-in-hall.avif", index: "04", title: "The winter court", caption: "When the season turns, play moves indoors" },
 ];
 
 export const ELITE = {
