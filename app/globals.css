@@ -1,26 +1,132 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------- *
+ * Design tokens — dark, clean, monochrome + a single volt accent.
+ * ---------------------------------------------------------------- */
+@theme {
+  --color-bg: #070707;
+  --color-bg-soft: #0e0e0e;
+  --color-ink: #f4f4ef;
+  --color-muted: #8c8c85;
+  --color-faint: #55554f;
+  --color-line: #1e1e1c;
+  --color-volt: #d8ff2e;
+
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-instrument), Georgia, "Times New Roman", serif;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-bg);
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-volt);
+  color: #060606;
+}
+
+/* Slim, unobtrusive scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #26261f;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #36362c;
+}
+
+/* ---------------------------------------------------------------- *
+ * Lenis smooth scroll (recommended base styles)
+ * ---------------------------------------------------------------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ---------------------------------------------------------------- *
+ * Helpers
+ * ---------------------------------------------------------------- */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+/* Line used for the word-reveal mask (each line clips its own text) */
+.reveal-line {
+  overflow: hidden;
+  display: block;
+}
+
+/* Big fluid display type */
+.display {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+}
+
+/* Prevent flash of un-pinned content before GSAP wires up */
+.gsap-hidden {
+  visibility: hidden;
+}
+
+/* Hero scroll-cue bead */
+.scroll-bead {
+  animation: bead 1.8s var(--ease-out-expo) infinite;
+}
+@keyframes bead {
+  0% {
+    transform: translateY(-100%);
+  }
+  60%,
+  100% {
+    transform: translateY(400%);
+  }
+}
+
+/* Marquee for the horizontal gallery / accents */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 40s) linear infinite;
 }
