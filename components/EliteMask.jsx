@@ -4,16 +4,32 @@ import { useRef } from "react";
 import { gsap, useGSAP } from "@/lib/gsap";
 import { ELITE } from "@/constants";
 
-// Start scale: large enough that the viewport sits fully inside one cut-out
-// letter (only the video shows). We then zoom OUT to the full-screen wordmark,
-// which reads like the black mask dropping in from above.
-const START_SCALE = 26;
+// The ELITE artwork is 1960 x 1080. The animation zooms the SVG's viewBox from
+// a tiny window sitting inside the middle "I" (so the whole viewport is inside a
+// cut-out letter, showing only the video) out to the full artwork (the complete
+// black mask on screen). Animating the viewBox — instead of transform:scale —
+// keeps the SVG element viewport-sized, so the browser never has to rasterise a
+// giant scaled SVG. That is what was hanging Chrome.
+const VB_START = { x: 940, y: 500, w: 66, h: 40 }; // inside the middle "I"
+const VB_END = { x: 0, y: 0, w: 1960, h: 1080 }; // full mask
+
+const MASK_PATH =
+  "M0,0V1080H1960V0ZM643.41,643.86H426.69V396.18h214.2v59.4H506.25v34.2h115.2v56.88H506.25v37.8H643.41Zm249.84,0H686.61V396.18h79.56V580.5H893.25Zm116.63,0H930.32V396.18h79.56Zm280.44-184.32h-81V643.86h-79.56V459.54H1048.4V396.18h241.92Zm253.07,184.32H1326.67V396.18h214.2v59.4H1406.23v34.2h115.2v56.88h-115.2v37.8h137.16Z";
 
 export default function EliteMask() {
   const root = useRef(null);
+  const svgRef = useRef(null);
 
   useGSAP(
     () => {
+      const vb = { ...VB_START };
+      const applyVB = () =>
+        svgRef.current?.setAttribute(
+          "viewBox",
+          `${vb.x} ${vb.y} ${vb.w} ${vb.h}`
+        );
+      applyVB();
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: root.current,
@@ -25,13 +41,20 @@ export default function EliteMask() {
         },
       });
 
-      tl.fromTo(
-        ".elite-mask",
-        { scale: START_SCALE },
-        { scale: 1, ease: "power2.out", duration: 1 },
+      tl.to(
+        vb,
+        {
+          x: VB_END.x,
+          y: VB_END.y,
+          w: VB_END.w,
+          h: VB_END.h,
+          ease: "none",
+          duration: 1,
+          onUpdate: applyVB,
+        },
         0
       )
-        .to(".elite-over", { opacity: 0, ease: "power1.out", duration: 0.18 }, 0)
+        .to(".elite-over", { opacity: 0, ease: "power1.out", duration: 0.22 }, 0)
         .fromTo(
           ".elite-under",
           { opacity: 0, y: 24 },
@@ -73,15 +96,17 @@ export default function EliteMask() {
         </p>
       </div>
 
-      {/* The black ELITE mask (black frame + transparent letters). Zooming this
-          <img> out from a huge scale to 1 is the reference technique. */}
-      <div className="elite-mask absolute inset-0 z-10 origin-center will-change-transform">
-        <img
-          src="/images/elite-mask.svg"
-          alt=""
-          className="h-full w-full object-cover"
-        />
-      </div>
+      {/* The black ELITE mask (black frame, letters knocked out). The viewBox is
+          driven by the scroll timeline above. */}
+      <svg
+        ref={svgRef}
+        className="absolute inset-0 z-10 h-full w-full"
+        viewBox={`${VB_START.x} ${VB_START.y} ${VB_START.w} ${VB_START.h}`}
+        preserveAspectRatio="xMidYMid slice"
+        aria-hidden
+      >
+        <path fill="#000" d={MASK_PATH} />
+      </svg>
 
       {/* Payoff line, revealed once the whole wordmark is on screen */}
       <div className="elite-under absolute inset-x-0 bottom-[12%] z-30 flex flex-col items-center gap-3 px-6 text-center opacity-0">
